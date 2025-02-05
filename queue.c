@@ -71,3 +71,20 @@ bool *dequeue(Queue *queue)
         queue->front = (queue->front + 1) % queue->size;
     }
 }
+
+int front(Queue *queue)
+{
+    if (isEmpty(queue)) {
+        fprintf(stderr, "Queue is empty.\n");
+        return -1;
+    }
+    return queue->array[queue->front];
+}
+
+void freeQueue(Queue *queue)
+{
+    if (queue) {
+        free(queue->array);
+        free(queue);
+    }
+}
