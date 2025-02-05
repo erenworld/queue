@@ -18,3 +18,20 @@ typedef struct {
     int rear;
     int size;
 } Queue;
+
+Queue *createQueue(int size)
+{
+    Queue *queue = (Queue *)malloc(sizeof(Queue));
+
+    queue->array = (int *)malloc(sizeof(int) * size);
+    queue->front = -1;
+    queue->rear = -1;
+
+    return queue;
+}
+
+bool isEmpty(Queue *queue)
+{
+    return (queue->front == -1 && queue->rear == -1);
+}
+
