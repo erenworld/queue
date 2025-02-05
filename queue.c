@@ -43,3 +43,31 @@ bool isFull(Queue *queue)
 {
     return ((queue->rear + 1) % queue->size == queue->front);
 }
+
+bool *enqueue(Queue *queue, int x)
+{
+    if (isFull(queue)) {
+        fprintf(stderr, "Queue is full.\n");
+        return false;
+    }
+    if (isEmpty(queue)) {
+        queue->front = queue->rear = 0;
+    } else {
+        queue->rear = (queue->rear + 1) % queue->size;
+    }
+    queue->array[queue->rear] = x;
+    return true;
+}
+
+bool *dequeue(Queue *queue)
+{
+    if (isEmpty(queue)) {
+        fprintf(stderr, "Queue is empty.\n");
+        return false;
+    }
+    if (queue->front == queue->rear) {
+        queue->front = queue->rear = -1;
+    } else {
+        queue->front = (queue->front + 1) % queue->size;
+    }
+}
