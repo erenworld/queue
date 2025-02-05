@@ -35,3 +35,11 @@ bool isEmpty(Queue *queue)
     return (queue->front == -1 && queue->rear == -1);
 }
 
+/*
+** A circular queue is full when adding one more element would make the rear pointer overlap with the front pointer
+** This happens when the next position after rear matches front
+*/
+bool isFull(Queue *queue)
+{
+    return ((queue->rear + 1) % queue->size == queue->front);
+}
